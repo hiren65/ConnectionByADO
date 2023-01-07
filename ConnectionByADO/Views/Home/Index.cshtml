@@ -6,29 +6,51 @@
 
 <h1 class="display-1 text-bg-info  text-center">ADO.Net Use in DotNet 6</h1>
 <div class="col-12">
-    @*<p>Data Connection String @ViewData["string"]</p>*@
-    <table class="table table-bordered text-center text-danger" style="background-color:azure">
-        @{
-            <tr>
-                    <th>Id</th><th>Data</th><th> Server</th><th>Version</th><th>State</th><th>Time Out</th><th>Packet Size</th>
-            </tr>
-            foreach(var item in Model)
-            {
-             <tr>
-             <td>@item.ServerId</td>
-             <td>@item.ServerName</td>
-             <td>@item.DataSource</td>
-             <td>@item.Version</td>
-             <td>@item.State</td>
-             <td>@item.ConnectionTimeOut</td>
-             <td>@item.PacketSize</td>
-             </tr>
-                <tr><td>Server String</td><td colspan="6">@item.ServerString</td> </tr>
-            }
+    <div class="col-2 text-danger">
+        @using (Html.BeginForm("Index","Home",FormMethod.Post, new {}))
+        {
+            @Html.TextBox("isD",@ViewData["scalar"],new {@type="string"})
+            <input type="submit" class="btn btn-danger" value="Submit"/>
         }
-        
-    </table>
-       
+    </div>
+</div>
+<div class="col-12">
+  
+   
+    @{
+        var str = Convert.ToString(ViewData["str"]);
+        var scalar = Convert.ToString(@ViewData["scalar"]);
+                    if (Model.Count > 0 && scalar.Trim() == "ServerInfo")
+                    {
+                                <table class="table table-bordered text-center text-danger" style="background-color:azure">
+                                        <tr>
+                                            <th>Id</th><th>Data</th><th> Server</th><th>Version</th><th>State</th><th>Time Out</th><th>Packet Size</th>
+                                        </tr>
+                                        @foreach(var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.ServerId</td>
+                                                <td>@item.ServerName</td>
+                                                <td>@item.DataSource</td>
+                                                <td>@item.Version</td>
+                                                <td>@item.State</td>
+                                                <td>@item.ConnectionTimeOut</td>
+                                                <td>@item.PacketSize</td>
+                                            </tr>
+                                            <tr><td>Server String</td><td colspan="6">@item.ServerString</td> </tr>
+                                            
+                                        }
+                               </table>
+                    }  
+                    if ( scalar.Trim() == "Scalar")
+                    {
+                        <ul>
+                            <li style="color: blue"> @str</li>
+                        </ul>
+                        return;
+                    }
+    }
+     
     
 </div>
 

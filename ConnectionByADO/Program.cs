@@ -24,6 +24,7 @@ namespace ConnectionByADO
             builder.Services.AddControllersWithViews();
             //Mke Sure While Add Custom service format should be maintained
             builder.Services.AddSingleton<IFetchServerInformation, GetServerInformation>();
+            builder.Services.AddScoped<ICountOrders, GetOrderCpuntByScalar>();
             /*
              * After adding above MVC Controller services add the default router mapping
              */
