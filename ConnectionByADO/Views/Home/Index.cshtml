@@ -1,0 +1,34 @@
+﻿@model List<ConnectionByADO.Models.ServerData>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "../_Layout";
+}
+
+<h1 class="display-1 text-bg-info  text-center">ADO.Net Use in DotNet 6</h1>
+<div class="col-12">
+    @*<p>Data Connection String @ViewData["string"]</p>*@
+    <table class="table table-bordered text-center text-danger" style="background-color:azure">
+        @{
+            <tr>
+                    <th>Id</th><th>Data</th><th> Server</th><th>Version</th><th>State</th><th>Time Out</th><th>Packet Size</th>
+            </tr>
+            foreach(var item in Model)
+            {
+             <tr>
+             <td>@item.ServerId</td>
+             <td>@item.ServerName</td>
+             <td>@item.DataSource</td>
+             <td>@item.Version</td>
+             <td>@item.State</td>
+             <td>@item.ConnectionTimeOut</td>
+             <td>@item.PacketSize</td>
+             </tr>
+                <tr><td>Server String</td><td colspan="6">@item.ServerString</td> </tr>
+            }
+        }
+        
+    </table>
+       
+    
+</div>
+
