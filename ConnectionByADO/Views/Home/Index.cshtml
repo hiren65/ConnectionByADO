@@ -1,15 +1,27 @@
-﻿@model List<ConnectionByADO.Models.ServerData>
+﻿@using System.Collections
+@using Microsoft.Identity.Client
+@model List<ConnectionByADO.Models.ServerData>
 @{
     ViewData["Title"] = "Index";
     Layout = "../_Layout";
 }
 
 <h1 class="display-1 text-bg-info  text-center">ADO.Net Use in DotNet 6</h1>
+@{
+    List<string> myList = new List<string>() { "--- Select ---","ServerInfo", "Scalar" };
+    IEnumerable<SelectListItem> items = myList
+        .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                  });
+}
 <div class="col-12">
     <div class="col-2 text-danger">
         @using (Html.BeginForm("Index","Home",FormMethod.Post, new {}))
         {
-            @Html.TextBox("isD",@ViewData["scalar"],new {@type="string"})
+           @* @Html.TextBox("isD",@ViewData["scalar"],new {@type="string"})*@
+            @Html.DropDownList("isD",items,new {})
             <input type="submit" class="btn btn-danger" value="Submit"/>
         }
     </div>
